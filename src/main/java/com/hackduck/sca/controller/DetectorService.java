@@ -1,16 +1,12 @@
-package com.hackduck.sca.service;
+package com.hackduck.sca.controller;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hackduck.sca.model.Detector;
 import com.hackduck.sca.repository.DetectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 public class DetectorService {

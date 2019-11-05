@@ -1,4 +1,4 @@
-package com.hackduck.sca.service;
+package com.hackduck.sca.controller;
 
 import com.hackduck.sca.model.Car;
 import com.hackduck.sca.repository.CarRepository;
