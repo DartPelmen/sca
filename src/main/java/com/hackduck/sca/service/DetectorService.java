@@ -34,5 +34,11 @@ public class DetectorService {
        return new GsonBuilder().create().toJson(detectorRepository.findAll());
 
     }
+    @GetMapping("/detectors{id}")
+    public String getCustomers(String id) {
+
+        return new GsonBuilder().create().toJson(detectorRepository.findById(UUID.fromString(id)));
+
+    }
 
 }
