@@ -1,5 +1,7 @@
 package com.hackduck.sca.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -28,7 +30,7 @@ public class Car {
     @Type(type="pg-uuid")
     private UUID pacsid;
 
-
+    @JsonBackReference
     @ManyToMany(mappedBy = "carList")
     private List<User> userList;
 

@@ -1,5 +1,12 @@
 package com.hackduck.sca.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -31,6 +38,8 @@ public class User {
     @Type(type="pg-uuid")
     private UUID pacsid;
 
+    @JsonBackReference
+    @Expose
     @ManyToMany
     @JoinTable(
             name = "user_car",
@@ -93,5 +102,6 @@ public class User {
     public void setCarList(List<Car> carList) {
         this.carList = carList;
     }
+
 }
 
