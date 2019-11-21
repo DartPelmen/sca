@@ -1,7 +1,6 @@
 package com.hackduck.sca.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -81,4 +80,5 @@ public class Car {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+
 }
