@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SpringMVC + Thymeleaf + Bootstrap 4 Table Example</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Detector Table</h1>
+        <table id="userTable" class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Decription</th>
+                <th>Street</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="detectors" type="java.util.List<com.hackduck.sca.model.Detector>"*/-->
+            <tr th:each="detector, rowStat: ${detectors}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${detector.iddetector}">1</td>
+                <td th:text="${detector.desc}">Jack</td>
+                <td th:text="${detector.street}">23</td>
+                <td th:text="${detector.status}">AVE N</td>
+                <td>
+                    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Edit detector information</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-user prefix grey-text"></i>
+                                        <input type="text" class="form-control validate" th:value="${detector.iddetector}" disabled>
+                                        <label data-error="wrong" data-success="right">Id</label>
+                                    </div>
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" class="form-control validate" th:value="${detector.desc}">
+                                        <label data-error="wrong" data-success="right">Descriprion</label>
+                                    </div>
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" class="form-control validate" th:value="${detector.street}">
+                                        <label data-error="wrong" data-success="right">Street</label>
+                                    </div>
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="number" class="form-control validate" th:value="${detector.status}">
+                                        <label data-error="wrong" data-success="right">Status</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-deep-orange">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Edit</button>
+                    </div>
+                </td>
+                <td><button class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+</div>

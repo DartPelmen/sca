@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>SpringMVC + Thymeleaf + Bootstrap 4 Table Example</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-$END$
-</body>
-</html>
+<div class="table-responsytive">
+    <h1>Detector Table</h1>
+        <table id="userTable" class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Decription</th>
+                <th>Street</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="detectors" type="java.util.List<com.hackduck.sca.model.Detector>"*/-->
+            <tr th:each="detector, rowStat: ${detectors}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${detector.iddetector}">1</td>
+                <td th:text="${detector.desc}">Jack</td>
+                <td th:text="${detector.street}">23</td>
+                <td th:text="${detector.status}">AVE N</td>
+                <td><button>edit</button></td>
+                <td><button>delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+</div>

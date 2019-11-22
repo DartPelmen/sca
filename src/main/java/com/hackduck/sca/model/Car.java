@@ -80,5 +80,4 @@ public class Car {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
-
 }

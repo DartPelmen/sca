@@ -6,6 +6,8 @@ import com.hackduck.sca.repository.DetectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
+@Controller
 public class DetectorController {
     @Autowired
     DetectorRepository detectorRepository;
@@ -36,10 +38,10 @@ public class DetectorController {
          return new GsonBuilder().create().toJson(detectorRepository.findById(UUID.fromString(id)));
 
     }
-    @GetMapping("/detectors/pages/{pageno}")
-    @ResponseBody
-    public List<Detector> getAllCars(@PathVariable("pageno") int pageno, HttpServletRequest req, HttpServletResponse res) throws ServletException {
-        return detectorRepository.findAll(PageRequest.of(pageno,10, Sort.by("street"))).toList();
+    @GetMapping("/detectors")
+    public String getAllCars(@RequestParam(value="pageno") int page, Model model) {
+        model.addAttribute("detectors",detectorRepository.findAll(PageRequest.of(page,10, Sort.by("street"))).toList());
+        return "detectors.html";
     }
 
     @PostMapping(value = "/edit-detector")

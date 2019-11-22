@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>SpringMVC + Thymeleaf + Bootstrap 4 Table Example</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-$END$
-</body>
-</html>
+<div class="container">
+    <h1>User Table</h1>
+    <div class="row col-md-7 table-responsive">
+        <table id="userTable" class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Second name</th>
+                <th>Last name</th>
+                <th>Status</th>
+                <th>PACSID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="users" type="java.util.List<com.hackduck.sca.model.User>"*/-->
+            <tr th:each="user, rowStat: ${users}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${user.iduser}">1</td>
+                <td th:text="${user.fname}">Jack</td>
+                <td th:text="${user.sname}">23</td>
+                <td th:text="${user.lname}">AVE N</td>
+                <td th:text="${user.status}">77587</td>
+                <td th:text="${user.pacsid}">77587</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

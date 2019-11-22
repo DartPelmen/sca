@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.Future;
 
-@RestController
+@Controller
 public class CarController {
     @Autowired
     CarRepository carRepository;
@@ -40,11 +41,9 @@ public class CarController {
         carRepository.save(car);
     }
     @GetMapping("/cars")
-    @ResponseBody
-    @Async
     public String getAllCars(@RequestParam(value="pageno") int page, Model model) {
-        model.addAttribute("name",carRepository.findAll(PageRequest.of(page, 10, Sort.by("model"))).toList());
-        return "cars";
+        model.addAttribute("cars",carRepository.findAll(PageRequest.of(page, 10, Sort.by("model"))).toList());
+        return "cars.html";
     }
 
 }
