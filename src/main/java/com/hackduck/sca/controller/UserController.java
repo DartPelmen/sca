@@ -41,7 +41,7 @@ public class UserController {
 
 
     @GetMapping("/users")
-    public String getAllCars(@RequestParam(name="page", required=true) int pageno, Model model) {
+    public String getAllCars(@RequestParam(name="page",defaultValue = "0", required=true) int pageno, Model model) {
         model.addAttribute("users", userRepository.findAll(PageRequest.of(pageno,10, Sort.by("lname").descending().and(Sort.by("fname")).descending().and(Sort.by("sname")))).toList());
         return "users.html";
     }

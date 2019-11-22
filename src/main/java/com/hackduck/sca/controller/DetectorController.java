@@ -32,8 +32,8 @@ public class DetectorController {
         System.out.println("SADSADASD");
     }
     @GetMapping("/")
+    @ResponseBody
     public String geHello() {
-
         return "Hello!";
     }
     @GetMapping("/detectors{id}")
@@ -43,7 +43,7 @@ public class DetectorController {
 
     }
     @GetMapping("/detectors")
-    public String getAllCars(@RequestParam(value="pageno") int page, Model model) {
+    public String getAllCars(@RequestParam(value="page", defaultValue = "0") int page, Model model) {
         model.addAttribute("detectors",detectorRepository.findAll(PageRequest.of(page,10, Sort.by("street"))).toList());
         return "detectors.html";
     }

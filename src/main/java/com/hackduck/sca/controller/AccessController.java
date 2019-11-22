@@ -3,6 +3,7 @@ package com.hackduck.sca.controller;
 import com.hackduck.sca.model.User;
 import com.hackduck.sca.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
@@ -19,7 +20,7 @@ public class AccessController {
 
     }
 
-    @GetMapping("/access")
+    @RequestMapping("/access")
     public Boolean access(@RequestParam(value="id") String id)
     {
      User user = userRepository.findByIduser(UUID.fromString(id));

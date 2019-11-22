@@ -41,7 +41,7 @@ public class CarController {
         carRepository.save(car);
     }
     @GetMapping("/cars")
-    public String getAllCars(@RequestParam(value="pageno") int page, Model model) {
+    public String getAllCars(@RequestParam(value="pageno",defaultValue = "0") int page, Model model) {
         model.addAttribute("cars",carRepository.findAll(PageRequest.of(page, 10, Sort.by("model"))).toList());
         return "cars.html";
     }
