@@ -31,7 +31,11 @@ public class DetectorController {
 
         System.out.println("SADSADASD");
     }
+    @GetMapping("/")
+    public String geHello() {
 
+        return "Hello!";
+    }
     @GetMapping("/detectors{id}")
     public String getCustomers(String id) {
 
